@@ -1,0 +1,10 @@
+---
+
+
+
+docker_state: started
+
+docker_restart_state: restarted
+
+docker_package_state: installed
+docker_dep_packages_state: installed

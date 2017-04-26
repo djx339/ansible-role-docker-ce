@@ -1,4 +1,4 @@
-Ansible Role: Docker Compose
+Ansible Role: Docker
 =========
 
 [![Build Status](https://travis-ci.org/djx339/ansible-role-docker-ce.svg?branch=master)](https://travis-ci.org/djx339/ansible-role-docker-ce)

@@ -1,7 +1,4 @@
 ---
-
-
-
 docker_state: started
 
 docker_restart_state: restarted

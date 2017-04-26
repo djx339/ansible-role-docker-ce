@@ -14,4 +14,4 @@
   when: docker_type == "edge"
 
 - name: Install docker-ce
-  yum: "name={{ docker_package }} state=present"
+  yum: "name={{ docker_package }} state=present update_cache=yes"

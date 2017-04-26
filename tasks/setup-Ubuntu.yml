@@ -30,12 +30,12 @@
 - name: Create docker_package variable if not specified docker_version
   set_fact:
     docker_package: "{{ _docker_package }}"
-  when: docker_version is undefined or docker_version is none or docker_version|trim == ''
+  when: docker_version is undefined or docker_version is none or docker_version|trim == '' or docker_version|trim == 'latest'
 
 - name: Create docker_package variable if specified docker_version
   set_fact:
     docker_package: "{{ _docker_package }}={{ docker_version }}"
-  when: docker_version is defined and docker_version is not none and docker_version|trim != ""
+  when: docker_version is defined and docker_version is not none and docker_version|trim != "" or docker_version|trim != 'latest'
 
 - name: Update apt cache
   apt: update_cache=yes

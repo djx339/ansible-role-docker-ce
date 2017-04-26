@@ -1,0 +1,17 @@
+---
+- name: Uninstall old versions
+  yum: "name={{ item }} state=absent"
+  with_items: "{{ docker_old_packages }}"
+
+- name: Install yum-utils for manage yum repository
+  yum: "name=yum-utils state=present"
+
+- name: Install docker-ce repository
+  shell: "yum-config-manager --add-repo {{ docker_repo }}"
+
+- name: Enable the edge repository
+  shell: yum-config-manager --enable docker-ce-edge
+  when: docker_type == "edge"
+
+- name: Install docker-ce
+  yum: "name={{ docker_package }} state=present"

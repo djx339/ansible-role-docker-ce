@@ -11,6 +11,7 @@ docker_deps:
 docker_old_packages:
   - docker
   - docker-engine
+  - docker-ce
 
 docker_gpg_key_url: https://download.docker.com/linux/ubuntu/gpg
 docker_gpg_key_file: /tmp/docker_gpg_key
@@ -22,16 +23,6 @@ docker_repo_suffix_map:
   stable: stable
   edge: stable edge
 
-docker_version:
 _docker_package: docker-ce
 
 docker_service: docker
-
-docker_config_template: daemon.json.j2
-docker_config_file: /etc/docker/daemon.json
-
-docker_upstart_env_template: docker.j2
-docker_upstart_env_file: /etc/default/docker
-
-docker_systemd_env_template: systemd_env.conf.j2
-docker_systemd_env_file: /etc/systemd/system/docker.service.d/env.conf

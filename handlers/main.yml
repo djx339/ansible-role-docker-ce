@@ -13,4 +13,3 @@
     state: "{{ docker_restart_state }}"
   listen: "restart docker"
   when: ansible_service_mgr != "systemd"
-

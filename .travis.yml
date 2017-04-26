@@ -17,8 +17,9 @@ script:
 
   - ${PWD}/tests/test.sh
 
-  # Ensure docker-compose is installed
+  # Ensure docker is installed
   - 'docker exec --tty ${container_id} env TERM=xterm which docker'
+  - 'docker exec --tty ${container_id} env TERM=xterm docker info'
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

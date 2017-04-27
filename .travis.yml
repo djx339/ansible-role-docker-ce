@@ -30,7 +30,7 @@ script:
   - export playbook_opts=""
   - ${PWD}/tests/test.sh
   - docker_info=$('docker exec --tty ${container_id} env TERM=xterm docker info')
-  - [[ ! $(echo $docker_info) | grep 17.03.0 ]]
+  - '[[ ! $(echo $docker_info) | grep 17.03.0 ]]'
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

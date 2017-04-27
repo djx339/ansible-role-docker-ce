@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -ex
+set -e
 
 export container_id=$(date +%s)
 export cleanup=false

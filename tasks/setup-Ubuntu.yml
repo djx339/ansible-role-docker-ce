@@ -27,18 +27,15 @@
   apt_repository:
     repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} {{ docker_repo_suffix }}"
 
-- name: Create docker_package variable if not specified docker_version
-  set_fact:
-    docker_package: "{{ _docker_package }}"
-  when: docker_version is undefined or docker_version is none or docker_version|trim == '' or docker_version|trim == 'latest'
+- name: Send pkg_version.sh to remote for get the pakcage version string
+  copy: "src=pkg_version.sh dest=/tmp/pkg_version.sh mode=0755"
 
-- name: Create docker_package variable if specified docker_version
-  set_fact:
-    docker_package: "{{ _docker_package }}={{ docker_version }}"
-  when: docker_version is defined and docker_version is not none and docker_version|trim != "" and docker_version|trim != 'latest'
+- name: Guess the package version string
+  shell: "/tmp/pkg_version.sh {{ docker_package }}  {{ docker_version }}"
+  register: __docker_pkg_version
 
 - name: Update apt cache
   apt: update_cache=yes
 
 - name: Ensure Docker is installed
-  apt: "name={{ docker_package }} state={{ docker_package_state}}"
+  apt: "name={{ docker_package }}={{ __docker_pkg_version }} state={{ docker_package_state }}"

@@ -23,6 +23,6 @@ docker_repo_suffix_map:
   stable: stable
   edge: stable edge
 
-_docker_package: docker-ce
+docker_package: docker-ce
 
 docker_service: docker

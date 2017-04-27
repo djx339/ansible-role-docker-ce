@@ -27,7 +27,7 @@ fi
 
 # Testing docker opts
 export container_id=$(date +%s)
-playbook_opts='-e {"docker_opts":{"dns":["192.168.1.1","192.168.1.2"]},"docker_envs":{"http_proxy":"192.168.1.3"}} --tags "configure"'
+playbook_opts='-e {"docker_opts":{"dns":["192.168.1.1","192.168.1.2"]},"docker_envs":{"http_proxy":"192.168.1.3"}}'
 playbook_opts="$playbook_opts" ${PWD}/tests/test.sh
 docker_info=$(docker exec --tty ${container_id} env TERM=xterm docker info)
 docker_conf=$(docker exec --tty ${container_id} env TERM=xterm cat /etc/docker/daemon.json)

@@ -8,29 +8,12 @@ env:
   - distro: centos7
 
 script:
-  - export container_id=$(date +%s)
-  - export cleanup=false
-  - export skip_rerun=true
-
   - wget -O ${PWD}/tests/test.sh https://gist.githubusercontent.com/djx339/4c0b0040e3b1d65810dbbd80c318a290/raw/
   - chmod +x ${PWD}/tests/test.sh
 
-  # install a particular docker-ce version
-  - export playbook_opts="-e docker_version=17.03.0"
-  - ${PWD}/tests/test.sh
-
-  # Ensure docker is installed
-  - 'docker exec --tty ${container_id} env TERM=xterm which docker'
-
-  # Ensure installed correct version
-  - docker_info=$('docker exec --tty ${container_id} env TERM=xterm docker info')
-  - echo $docker_info | grep 17.03.0
-
-  # install latest docker-ce
-  - export playbook_opts=""
-  - ${PWD}/tests/test.sh
-  - docker_info=$('docker exec --tty ${container_id} env TERM=xterm docker info')
-  - '[[ ! $(echo $docker_info) | grep 17.03.0 ]]'
+  # run test
+  - chmod +x ${PWD}/tests/travis_test.sh
+  - ${PWD}/tests/travis_test.sh
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

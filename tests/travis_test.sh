@@ -21,10 +21,11 @@ echo $docker_info | grep $old_version
 playbook_opts="" ${PWD}/tests/test.sh
 docker_info=$(docker exec --tty ${container_id} env TERM=xterm docker info)
 if ! echo $docker_info | grep $old_version >/dev/null 2>&1; then
-    echo "Installing latest docker and upgrading docker is successful"
+    echo "Install latest docker successfully"
 fi
 
 # Testing docker opts
+export container_id=$(date +%s)
 playbook_opts='-e {"docker_opts":{"dns":["192.168.1.1","192.168.1.2"]},"docker_envs":{"http_proxy":"192.168.1.3"}} --tags "configure"'
 playbook_opts="$playbook_opts" ${PWD}/tests/test.sh
 docker_info=$(docker exec --tty ${container_id} env TERM=xterm docker info)

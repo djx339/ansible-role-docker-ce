@@ -18,6 +18,7 @@ docker_info=$(docker exec --tty ${container_id} env TERM=xterm docker info)
 echo $docker_info | grep $old_version
 
 # Install latest docker
+export container_id=$(date +%s)
 playbook_opts="" ${PWD}/tests/test.sh
 docker_info=$(docker exec --tty ${container_id} env TERM=xterm docker info)
 if ! echo $docker_info | grep $old_version >/dev/null 2>&1; then

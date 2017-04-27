@@ -23,12 +23,14 @@ script:
   - 'docker exec --tty ${container_id} env TERM=xterm which docker'
 
   # Ensure installed correct version
-  - 'docker exec --tty ${container_id} env TERM=xterm docker info' | grep 17.03.0
+  - docker_info=$('docker exec --tty ${container_id} env TERM=xterm docker info')
+  - echo $docker_info | grep 17.03.0
 
   # install latest docker-ce
   - export playbook_opts=""
   - ${PWD}/tests/test.sh
-  - [[ ! $('docker exec --tty ${container_id} env TERM=xterm docker info' | grep 17.03.0) ]]
+  - docker_info=$('docker exec --tty ${container_id} env TERM=xterm docker info')
+  - [[ ! $(echo $docker_info) | grep 17.03.0 ]]
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

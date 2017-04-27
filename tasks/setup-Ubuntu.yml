@@ -34,8 +34,5 @@
   shell: "/tmp/pkg_version.sh {{ docker_package }}  {{ docker_version }}"
   register: __docker_pkg_version
 
-- name: Update apt cache
-  apt: update_cache=yes
-
 - name: Ensure Docker is installed
-  apt: "name={{ docker_package }}={{ __docker_pkg_version }} state={{ docker_package_state }}"
+  apt: "name={{ docker_package }}={{ __docker_pkg_version.stdout }} state={{ docker_package_state }} update_cache=yes"

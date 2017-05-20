@@ -1,8 +1,4 @@
 ---
-- name: Uninstall old versions
-  yum: "name={{ item }} state=absent"
-  with_items: "{{ docker_old_packages }}"
-
 - name: Install yum-utils for manage yum repository
   yum: "name=yum-utils state=present"
 

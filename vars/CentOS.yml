@@ -1,12 +1,11 @@
 ---
 docker_repo: https://download.docker.com/linux/centos/docker-ce.repo
-docker_old_packages:
+docker_deprecated_packages:
   - docker
   - docker-common
   - container-selinux
   - docker-selinux
   - docker-engine
-  - docker-ce
 
 # `stable` or `edge`
 docker_type: stable

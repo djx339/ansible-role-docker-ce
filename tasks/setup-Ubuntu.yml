@@ -1,8 +1,4 @@
 ---
-- name: Uninstall old Docker
-  apt: "name={{ item }} state=absent"
-  with_items: "{{ docker_old_packages }}"
-
 - name: Update apt cache
   apt: update_cache=yes cache_valid_time=3600
 

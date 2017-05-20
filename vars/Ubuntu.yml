@@ -8,10 +8,9 @@ docker_deps:
   - software-properties-common
   - python-software-properties
 
-docker_old_packages:
+docker_deprecated_packages:
   - docker
   - docker-engine
-  - docker-ce
 
 docker_gpg_key_url: https://download.docker.com/linux/ubuntu/gpg
 docker_gpg_key_file: /tmp/docker_gpg_key

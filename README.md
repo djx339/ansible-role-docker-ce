@@ -45,7 +45,7 @@ Example Playbook
 ```yaml
 - hosts: servers
   roles:
-    - { role: djx339.ansible-role-docker-ce, docker_version: latest }
+    - { role: djx339.docker-ce, docker_version: latest }
 ```
 
 License
